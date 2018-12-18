@@ -1,0 +1,161 @@
+@import "../colors";
+
+body,
+input,
+textarea,
+select,
+button {
+  font-family: "IBM Plex Sans", "Lato", sans-serif;
+  margin: 0;
+  outline: none;
+}
+
+#container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+
+  .innerContainer {
+    flex: 1;
+    display: flex;
+  }
+}
+
+.slide-content .scroller {
+  width: 1024px;
+}
+
+#loader {
+  visibility: hidden;
+}
+a{text-decoration: none;}
+.loader-overlay {
+  position: fixed;
+  /* Sit on top of the page content */
+  display: block;
+  /* Hidden by default */
+  width: 100%;
+  /* Full width (cover the whole page) */
+  height: 100%;
+  /* Full height (cover the whole page) */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  /* Black background with opacity */
+  z-index: 2;
+  /* Specify a stack order in case you're using a different order for other elements */
+  cursor: pointer;
+  /* Add a pointer on hover */
+
+  &.activate {
+    display: block;
+  }
+
+  &.show {
+    display: block;
+  }
+}
+
+.loader-wrapper {
+  position: absolute;
+  width: 90%;
+  height: 200px;
+  top: 20%;
+  left: 5%;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: $white;
+  border-radius: 10px;
+
+  &.activate {
+    display: flex;
+  }
+
+  &.show {
+    display: flex;
+  }
+}
+
+.spinner {
+  border: 5px solid $white;
+  border-top: 5px solid $yellow;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+//css for tooltip
+
+button:hover {
+  box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(0, 0, 0, 0.08);
+}
+
+[tooltip] {
+  position: relative;
+  display: inline-block;
+}
+
+[tooltip]::before {
+  content: "";
+  position: absolute;
+  top: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 4px 6px 0 6px;
+  border-style: solid;
+  border-color: rgba(0, 0, 0, 0.7) transparent transparent transparent;
+  z-index: 99;
+  opacity: 0;
+}
+
+[tooltip-position="bottom"]::before {
+  top: 100%;
+  margin-top: 8px;
+  transform: translateX(-50%) translateY(-100%) rotate(-180deg);
+}
+
+[tooltip]::after {
+  content: attr(tooltip);
+  position: absolute;
+  left: 50%;
+  top: -6px;
+  transform: translateX(-50%) translateY(-100%);
+  background: rgba(0, 0, 0, 0.7);
+  text-align: center;
+  color: #fff;
+  padding: 4px 2px;
+  font-size: 12px;
+  min-width: 80px;
+  border-radius: 5px;
+  pointer-events: none;
+  padding: 4px 4px;
+  z-index: 99;
+  opacity: 0;
+}
+
+[tooltip-position="bottom"]::after {
+  top: 100%;
+  margin-top: 8px;
+  transform: translateX(-50%) translateY(0%);
+}
+
+[tooltip]:hover::after,
+[tooltip]:hover::before {
+  opacity: 1;
+}

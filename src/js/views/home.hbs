@@ -1,0 +1,9 @@
+<div class='home-container'>
+    <p>{{appName}}</p>
+
+    <button class='primary' onclick='dynamicEventDispatcher("action:fetchInitialData")'>Call API</button>
+
+    {{#if userName}}
+    <h2>welcome {{userName}}</h2>
+    {{/if}}
+</div>
