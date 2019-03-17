@@ -1,6 +1,5 @@
 const BASE_URL = API_BASE_URL; //eslint-disable-line
 
-
 function handleError(xhttp, status, cb) {
   return cb({
     message: xhttp.statusText,
